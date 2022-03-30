@@ -7,7 +7,7 @@ const { setupMaster, setupWorker } = require("@socket.io/sticky");
 
 var workers = [];
 
-var r = require('rethinkdbdash')({ servers: [{ host: '10.10.30.36', port: 28015 }] });
+var r = require('rethinkdbdash')({ servers: [{ host: 'localhost', port: 28015 }] });
 
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running`);
@@ -16,7 +16,7 @@ if (cluster.isMaster) {
   setupMaster(httpServer, {
     loadBalancingMethod: "least-connection", // either "random", "round-robin" or "least-connection"
   });
-  httpServer.listen(5975);
+  httpServer.listen(5001);
 
   for (let i = 0; i < numCPUs; i++) {
     var worker = cluster.fork();
@@ -47,11 +47,7 @@ if (cluster.isMaster) {
     socket.on("clientId", (data) => {
       // fetch devices
       console.log("data", data)
-      // let devices = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,24,25,26,27,28,29,30,31,32,33,34,44,45];
-
-      /*r.db("n2mobil").table("deviceLastState").filter((doc) => {
-        return r.expr(devices).contains(doc("device_id"))
-      })*/r.db("n2mobil").table("deviceLastState")
+      r.db("test").table("testTable")
         .changes()
         .run(function (err, cursor) {
 		if (err) {
@@ -62,7 +58,7 @@ if (cluster.isMaster) {
           cursor.each((err, row) => {
             console.log(err);
             console.log(row);
-            socket.emit("gps_data", row);
+            socket.emit("data", row);
           })
         })
     })
