@@ -1,0 +1,20 @@
+{
+  "name": "socket-server-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@socket.io/sticky": "^1.0.0",
+    "dotenv": "^16.0.0",
+    "rethinkdbdash": "^2.3.31",
+    "socket.io": "^4.1.2",
+    "socket.io-redis": "^6.1.1",
+    "uuid": "^8.3.2"
+  }
+}
