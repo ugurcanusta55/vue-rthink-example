@@ -45,8 +45,6 @@ if (cluster.isMaster) {
 
 
     socket.on("clientId", (data) => {
-      // fetch devices
-      console.log("data", data)
       r.db("test").table("testTable")
         .changes()
         .run(function (err, cursor) {
@@ -58,7 +56,7 @@ if (cluster.isMaster) {
           cursor.each((err, row) => {
             console.log(err);
             console.log(row);
-            socket.emit("data", row);
+            socket.emit("exampleData", row);
           })
         })
     })

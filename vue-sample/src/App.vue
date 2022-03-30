@@ -26,7 +26,7 @@ export default {
       console.log('socket connected')
       this.$socket.client.emit("clientId", "asdadsa");
     },
-    gps_data(val) {
+    exampleData(val) {
       console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)', val)
     }
   },
