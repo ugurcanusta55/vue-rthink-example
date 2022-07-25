@@ -1,4 +1,4 @@
-# ello-world
+# Hello-world
 
 ## Project setup
 ```
